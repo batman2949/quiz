@@ -178,6 +178,7 @@ function QuizWithoutTimer() {
         setScore(0);
         setTotalTime(0);
         setActiveTime(0);
+        setSubmitted(true);
         timerRef.current=null;
     }
 

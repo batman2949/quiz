@@ -239,6 +239,7 @@ function Quiz() {
         setQues(0);
         setScore(0);
         setTimeup(false);
+        setSubmitted(true);
         // setTotalTime(0);
         activetime.current = 0;
         timerRef.current=null;
