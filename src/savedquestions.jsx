@@ -6,7 +6,8 @@ import { ArrowNextLtr } from "./next";
 import { ArrowNextRtl } from "./previous";
 import { EyeHideFill16 } from "./hide";
 import { ViewShow } from "./show";
-import { motion } from "motion/react"
+import { motion } from "motion/react";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Savedquestions=()=>{
@@ -41,6 +42,16 @@ const Savedquestions=()=>{
             setArrayIndex(index);
             return;
         }
+    }
+
+    const deleteq=(e)=>{
+        // localStorage doesn't support deleting at a particular index in array
+        const updateditems = [...saveddata];
+        updateditems.splice(e,1); // remove the current index
+        setSaveddata(updateditems);
+        localStorage.setItem("array",JSON.stringify(updateditems));
+       toast.success("Deleted");
+
     }
 
     const seebetter = (e)=>{
@@ -85,6 +96,7 @@ const Savedquestions=()=>{
                         <div className="bg-amber-600 text-black w-full p-1 md:p-2">Ans. {element.correct_optionText}</div>
                         <div className="text-black p-1  w-full sm:p-2">{element.answer}</div>
                         <div className=" bg-yellow-400 m-2 border-2 bg-gradient-to-tl from-lime-700 via-green-800 to-lime-700 border-green-500 p-1 md:p-2 text-2xl  font-bold rounded-md cursor-pointer select-none text-white w-max hover:scale-105" onClick={() => seebetter(index)}>See Question better</div>
+                        <div className=" bg-yellow-400 m-2 border-2 bg-gradient-to-tl from-red-500 via-red-600 to-red-800 border-red-500 p-1 md:p-2 text-2xl  font-bold rounded-md cursor-pointer select-none text-white w-max hover:scale-105" onClick={() => deleteq(index)}>Delete</div>
                     </div>
                 ))
             }
